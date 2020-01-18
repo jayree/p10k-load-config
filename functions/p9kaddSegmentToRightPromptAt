@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+#
+# adds a new segment $1 to the right prompt at position $2
+#
+# function p9kaddSegmentToRightPromptAt() {
+
+local segment=$1
+local at=$2
+[[ -n "$segment" ]] || return 1
+[[ $at == <1-> ]] || return 1
+if (( ! POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS[(Ie)$segment] )); then
+  typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS[$at,0]=$segment
+  # If p10k is already loaded, reload configuration.
+  # This works even with POWERLEVEL9K_DISABLE_HOT_RELOAD=true.
+  (( ! $+functions[p10k] )) || p10k reload
+  return 0
+fi
+
+# }
