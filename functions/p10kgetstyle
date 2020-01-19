@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+#
+# gets the current powerlevel10k style
+#
+# function p10kgetstyle() {
+
+local lines=( "${(@f)"$(<$__p9k_cfg_path)"}" )
+if [[ ${(@M)lines:#(#b)*p10k-(*).zsh*} ]]; then
+  echo $match[1]
+fi
+
+# }
