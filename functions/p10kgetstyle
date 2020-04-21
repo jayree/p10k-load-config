@@ -4,8 +4,8 @@
 #
 # function p10kgetstyle() {
 
-if [[ -f $__p9k_cfg_path ]]; then
-  local lines=( "${(@f)"$(<$__p9k_cfg_path)"}" )
+if [[ -f $POWERLEVEL9K_CONFIG_FILE ]]; then
+  local lines=( "${(@f)"$(<$POWERLEVEL9K_CONFIG_FILE)"}" )
   if [[ ${(@M)lines:#(#b)*p10k-(*).zsh*} ]]; then
     echo $match[1]
   fi
