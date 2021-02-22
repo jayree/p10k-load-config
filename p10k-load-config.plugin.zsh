@@ -2,12 +2,13 @@
 if [[ -e $__p9k_zshrc ]]; then
   zshrc_content="$(<$__p9k_zshrc)" || quit -c
   local lines=("${(@f)zshrc_content}")
-  local f0=$__p9k_cfg_path
+  local __p9k_cfg_path_o=${ZDOTDIR:-~}/.p10k.zsh
+  local f0=$__p9k_cfg_path_o
   local f1=${(q)f0}
   local f2=${(q-)f0}
   local f3=${(qq)f0}
   local f4=${(qqq)f0}
-  local g1=${${(q)__p9k_cfg_path}/#(#b)${(q)HOME}\//'~/'}
+  local g1=${${(q)__p9k_cfg_path_o}/#(#b)${(q)HOME}\//'~/'}
   local h1=${(@M)lines:#(#b)[^#]#([^[:IDENT:]]|)source[[:space:]]##($f1|$f2|$f3|$f4|$g1)(|[[:space:]]*|'#'*)}
   if [[ -n $h1 ]]; then
     # Code snippet based on https://github.com/romkatv/powerlevel10k/blob/f85a3a56524f79c52ce367e9d55a2ef275b76155/internal/wizard.zsh#L1449-L1454
